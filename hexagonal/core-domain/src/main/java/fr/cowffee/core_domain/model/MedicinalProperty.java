@@ -2,19 +2,19 @@ package fr.cowffee.core_domain.model;
 
 import java.util.Objects;
 
-public class MedicalProperty {
-    public Long id;
+public class MedicinalProperty {
+    private Long id;
 
-    public String title;
+    private String title;
 
-    public MedicalProperty() {
+    public MedicinalProperty() {
     }
 
-    public MedicalProperty(String title) {
+    public MedicinalProperty(String title) {
         this.title = title;
     }
 
-    public MedicalProperty(Long id, String title) {
+    public MedicinalProperty(Long id, String title) {
         this.id = id;
         this.title = title;
     }
@@ -37,7 +37,7 @@ public class MedicalProperty {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("MedicalProperty{");
+        final StringBuffer sb = new StringBuffer("MedicinalProperty{");
         sb.append("id=").append(id);
         sb.append(", title='").append(title).append('\'');
         sb.append('}');
@@ -47,7 +47,7 @@ public class MedicalProperty {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        MedicalProperty that = (MedicalProperty) o;
+        MedicinalProperty that = (MedicinalProperty) o;
         return Objects.equals(id, that.id) && Objects.equals(title, that.title);
     }
 

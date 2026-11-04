@@ -1,0 +1,3 @@
+rootProject.name = 'hexagonal'
+
+include('app', 'core-domain', 'adapter-jpa')
