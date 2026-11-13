@@ -42,9 +42,14 @@ public class EssentialOilService {
     }
 
     public EssentialOil save(EssentialOil oilToSave){
+        if(oilToSave.getId() == null){
+            EssentialOil oilToCreate = new EssentialOil(null, oilToSave.getName(), oilToSave.getPropertySet());
+            return oilRepo.save(oilToCreate);
+        }
         EssentialOil foundOil = oilRepo.findById(oilToSave.getId());
         if(foundOil != null){
             foundOil.setName(oilToSave.getName());
+            foundOil.setPropertySet(oilToSave.getPropertySet());
             EssentialOil oilSaved = oilRepo.save(foundOil);
             return oilSaved;
         }
@@ -56,13 +61,16 @@ public class EssentialOilService {
     public EssentialOil addAMedicinalProperty(Long idOil, Long idProp){
         EssentialOil foundOil = getById(idOil);
         MedicinalProperty foundProp = propService.getById(idProp);
-        Set<MedicinalProperty> set = foundOil.getPropertySet();
-        if(set == null){
-            set = new HashSet<>();
+        Set<MedicinalProperty> propertySet = new HashSet<>();
+        if(foundOil.getPropertySet() != null){
+            propertySet.addAll(foundOil.getPropertySet());
         }
-        set.add(foundProp);
-        foundOil.setPropertySet(set);
-        EssentialOil oilToSave = oilRepo.save(foundOil);
-        return oilToSave;
+        propertySet.add(foundProp);
+        EssentialOil oilToUpdate = new EssentialOil(
+                foundOil.getId(),
+                foundOil.getName(),
+                propertySet
+        );
+        return oilRepo.save(oilToUpdate);
     }
 }

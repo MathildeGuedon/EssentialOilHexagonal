@@ -1,4 +1,4 @@
-package fr.cowffee.adapter_jpa;
+package fr.cowffee.adapter_jpa.medicinal_property;
 
 import jakarta.persistence.*;
 

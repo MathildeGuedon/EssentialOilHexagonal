@@ -15,4 +15,6 @@ public interface MedicinalPropertyRepositoryCore {
     boolean deleteById(Long id);
 
     MedicinalProperty save(MedicinalProperty prop);
+
+    boolean isUsedByEssentialOil(Long propId);
 }

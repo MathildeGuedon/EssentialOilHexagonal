@@ -1,5 +1,6 @@
 package fr.cowffee.core_domain.service;
 
+import fr.cowffee.core_domain.exception.MedicinalPropertyInUseException;
 import fr.cowffee.core_domain.exception.MedicinalPropertyNotDeletedException;
 import fr.cowffee.core_domain.exception.MedicinalPropertyNotFoundException;
 import fr.cowffee.core_domain.locale.IMessagePort;
@@ -30,6 +31,9 @@ public class MedicinalPropertyService {
     }
 
     public void deleteById(Long id){
+        if(propRepo.isUsedByEssentialOil(id)){
+            throw new MedicinalPropertyInUseException(lH.i18n("Msg_MedProp_DeleteById_Error_InUse"));
+        }
         boolean success = propRepo.deleteById(id);
         if(!success){
             throw new MedicinalPropertyNotDeletedException(lH.i18n("Msg_MedProp_DeleteById_Error"));
@@ -37,14 +41,18 @@ public class MedicinalPropertyService {
     }
 
     public MedicinalProperty save(MedicinalProperty propToSave){
+        if(propToSave.getId() == null){
+            MedicinalProperty propertyToCreate = new MedicinalProperty(
+                    null,
+                    propToSave.getTitle()
+            );
+            return propRepo.save(propertyToCreate);        }
         MedicinalProperty foundProp = propRepo.findById(propToSave.getId());
         if(foundProp != null){
             foundProp.setTitle(propToSave.getTitle());
-            MedicinalProperty propSaved = propRepo.save(foundProp);
-            return propSaved;
+            return propRepo.save(foundProp);
         }
         propToSave.setId(null);
-        MedicinalProperty propSaved = propRepo.save(propToSave);
-        return propSaved;
+        return propRepo.save(propToSave);
     }
 }

@@ -1,5 +1,6 @@
-package fr.cowffee.adapter_jpa;
+package fr.cowffee.adapter_jpa.medicinal_property;
 
+import fr.cowffee.adapter_jpa.essential_oil.EssentialOilRepositoryJPA;
 import fr.cowffee.core_domain.model.MedicinalProperty;
 import fr.cowffee.core_domain.repository.MedicinalPropertyRepositoryCore;
 import org.springframework.context.annotation.Profile;
@@ -12,9 +13,11 @@ import java.util.List;
 @Profile("jpa")
 public class MedicinalPropertyJpaAdapter implements MedicinalPropertyRepositoryCore {
     private final MedicinalPropertyRepositoryJPA repository;
+    private final EssentialOilRepositoryJPA oilRepository;
 
-    public MedicinalPropertyJpaAdapter(MedicinalPropertyRepositoryJPA repository) {
+    public MedicinalPropertyJpaAdapter(MedicinalPropertyRepositoryJPA repository, EssentialOilRepositoryJPA oilRepository) {
         this.repository = repository;
+        this.oilRepository = oilRepository;
     }
 
     @Override
@@ -37,11 +40,7 @@ public class MedicinalPropertyJpaAdapter implements MedicinalPropertyRepositoryC
     public boolean deleteById(Long id) {
         boolean exist = repository.existsById(id);
         if (!exist) return false;
-        try{
-            repository.deleteById(id);
-        } catch (Exception e) {
-            return false;
-        }
+        repository.deleteById(id);
         return true;
     }
 
@@ -50,5 +49,13 @@ public class MedicinalPropertyJpaAdapter implements MedicinalPropertyRepositoryC
         MedicinalPropertyJPA propToSaveJPA = new MedicinalPropertyJPA(propToSave.getId(), propToSave.getTitle());
         MedicinalPropertyJPA propJPA = repository.save(propToSaveJPA);
         return new MedicinalProperty(propJPA.getId(), propJPA.getTitle());
+    }
+
+    @Override
+    public boolean isUsedByEssentialOil(Long propId) {
+        if(propId == null) {
+            return false;
+        }
+        return oilRepository.existsByPropertyId(propId);
     }
 }
