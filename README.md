@@ -18,14 +18,39 @@ Les données sont stockées dans une base SQLite locale. L’API est documentée
 
 ## Fonctionnalités
 
-🧪 Gestion des huiles essentielles : créer, consulter, modifier et supprimer des huiles.
-⚕️ Gestion des propriétés médicinales : créer, consulter, modifier et supprimer des propriétés.
-🔗 Association huile / propriété : associer une propriété médicinale existante à une huile essentielle.
-🛡️ Protection des données : une propriété médicinale encore utilisée par au moins une huile ne peut pas être supprimée.
-🌍 Internationalisation : les messages d’erreur sont gérés via des clés de traduction et un fichier `messages.properties`.
-📑 Documentation API : Swagger UI génère automatiquement la documentation des endpoints.
-✅️ Tests unitaires : les principaux cas d’usage sont couverts par des tests JUnit 5 et AssertJ.
-🛢️ Base de données SQLite : les données sont persistées localement dans un fichier SQLite.
+🌸 Gestion des huiles essentielles : créer, consulter, modifier et supprimer des huiles.  
+⚕️ Gestion des propriétés médicinales : créer, consulter, modifier et supprimer des propriétés.  
+🔗 Association huile / propriété : associer une propriété médicinale existante à une huile essentielle.  
+🛡️ Protection des données : une propriété médicinale encore utilisée par au moins une huile ne peut pas être supprimée.  
+🌍 Internationalisation : les messages d’erreur sont gérés via des clés de traduction et un fichier `messages.properties`.  
+📑 Documentation API : Swagger UI génère automatiquement la documentation des endpoints.  
+✅️ Tests unitaires : les principaux cas d’usage sont couverts par des tests JUnit 5 et AssertJ.  
+🛢️ Base de données SQLite : les données sont persistées localement dans un fichier SQLite.  
+
+## Objectifs pédagogiques
+
+Ce projet m’a permis de :
+
+🔌 Mettre en œuvre une **API REST** avec Spring Boot.    
+🧩 Expérimenter l’**architecture hexagonale** et la séparation du domaine, des ports et des adaptateurs.  
+🧪 Mettre en place des **tests unitaires** avec JUnit 5 et AssertJ.   
+🛢️ Manipuler une **base de données SQLite** avec Spring Data JPA et Hibernate.  
+🔗 Concevoir une **relation many-to-many** (plusieurs-à-plusieurs) entre deux entités.  
+🛠️ Gérer les règles métier liées à la **suppression de données partagées**.  
+🌍 Centraliser l'**internationalisation** des messages d’erreur dans *messages.properties* et les traduire avec MessageSource.  
+📰 **Documenter automatiquement** une API avec Springdoc OpenAPI et Swagger UI.  
+🚀 **Tester les endpoints** avec Postman.  
+🧹 Nettoyer et organiser le code pour améliorer sa lisibilité et sa **maintenabilité**.
+
+## Technologies utilisées
+
+- Java 25
+- Spring Boot, Spring Web, Gradle
+- Spring Data JPA, Hibernate
+- SQLite
+- Springdoc OpenAPI, Swagger UI
+- JUnit5, AssertJ
+- Postman
 
 ## Architecture hexagonale
 
@@ -168,38 +193,6 @@ http://localhost:8080/api/oils
 ```text
 http://localhost:8080/swagger-ui.html
 ```
-
-## Technologies utilisées
-
-- Java 25
-- Spring Boot, Spring Web, Gradle
-- Spring Data JPA, Hibernate
-- SQLite
-- Springdoc OpenAPI, Swagger UI
-- JUnit5, AssertJ
-- Postman
-![Static Badge](https://img.shields.io/badge/-Spring%20Boot-%236DB33F?style=flat&logo=springboot&logoColor=%236DB33F&logoSize=auto&color=%23636363)
-![Static Badge](https://img.shields.io/badge/-Hibernate-%2359666C?style=flat&logo=hibernate&logoColor=%2359666C&logoSize=auto&color=%23636363)
-![Static Badge](https://img.shields.io/badge/-SQLite-%23003B57?style=flat&logo=sqlite&logoColor=%23003B57&logoSize=auto&color=%23636363)
-![Static Badge](https://img.shields.io/badge/-Gradle-%2302303A?style=flat&logo=gradle&logoColor=%2302303A&logoSize=auto&color=%23636363)
-![Static Badge](https://img.shields.io/badge/-Swagger-%2385EA2D?style=flat&logo=swagger&logoColor=%2385EA2D&logoSize=auto&color=%23636363)
-![Static Badge](https://img.shields.io/badge/-JUnit5-%2325A162?style=flat&logo=junit5&logoColor=%2325A162&logoSize=auto&color=%23636363)
-![Static Badge](https://img.shields.io/badge/-Postman-%23#FF6C37?style=flat&logo=postman&logoColor=%23#FF6C37&logoSize=auto&color=%23636363)
-
-## Objectifs pédagogiques
-
-Ce projet m’a permis de :
-
-🔌 Mettre en œuvre une **API REST** avec Spring Boot.
-🧩 Expérimenter l’**architecture hexagonale** et la séparation du domaine, des ports et des adaptateurs.
-🧪 Mettre en place des **tests unitaires** avec JUnit 5 et AssertJ.
-🛢️ Manipuler une **base de données SQLite** avec Spring Data JPA et Hibernate.
-🔗 Concevoir une **relation many-to-many** (plusieurs-à-plusieurs) entre deux entités.
-🛡️ Gérer les règles métier liées à la **suppression de données partagées**.
-🌍 Centraliser l'**internationalisation** des messages d’erreur dans *messages.properties* et les traduire avec MessageSource.
-📚 **Documenter automatiquement** une API avec Springdoc OpenAPI et Swagger UI.
-🚀 **Tester les endpoints** avec Postman.
-🧹 Nettoyer et organiser le code pour améliorer sa lisibilité et sa **maintenabilité**.
 
 ## Contact
 
